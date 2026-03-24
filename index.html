@@ -173,29 +173,25 @@ function sendTelegram(e) {
     let token = "8617081887:AAFJ_aDQk2_Zlar3U21N1DbdDi7UzXSYfCE";
     let chat_id = "701230938";
 
-   let message = "🚗 Нова заявка (Ворзель)\n" +
-"Ім'я: " + name + "\n" +
-"Телефон: " + phone + "\n" +
-"Дата: " + date + "\n" +
-"Час: " + time;
+    let message = `🚗 Нова заявка (Ворзель)
+Ім'я: ${name}
+Телефон: ${phone}
+Дата: ${date}
+Час: ${time}`;
 
-fetch("https://api.telegram.org/bot" + token + "/sendMessage", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        chat_id: chat_id,
-        text: message
+    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            chat_id: chat_id,
+            text: message
+        })
     })
-})
-.then(response => response.json())
-.then(data => {
-    alert("Заявка відправлена!");
-})
-.catch(error => {
-    alert("Помилка! Перевір код");
-});
+    .then(() => alert("Заявка відправлена!"))
+    .catch(() => alert("Помилка!"));
+}
 </script>
 
 </body>
